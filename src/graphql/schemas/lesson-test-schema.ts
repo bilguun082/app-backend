@@ -1,48 +1,35 @@
 import gql from "graphql-tag";
 
 export const lessonTestTypeDefs = gql`
-  type WordSelectionTest {
-    id: Int!
+  type SelectionTest {
+    id: String!
+    type: String!
     words: [String!]!
-    correctSentence: String!
-  }
-
-  type FormSelectionTest {
-    id: Int!
-    options: [String!]!
-    correctOptionIndex: Int!
+    correctForm: String!
   }
 
   type LessonTest {
-    id: Int!
-    wordSelectionTests: [WordSelectionTest!]!
-    formSelectionTests: [FormSelectionTest!]!
+    id: String!
+    selectionTests: [SelectionTest!]!
   }
 
   input WordSelectionTestInput {
     words: [String!]!
-    correctSentence: String!
-    grade: Float
-  }
-
-  input FormSelectionTestInput {
-    options: [String!]!
-    correctOptionIndex: Int!
+    correctForm: String!
     grade: Float
   }
 
   input LessonTestInput {
-    wordSelectionTests: [WordSelectionTestInput!]! 
-    formSelectionTests: [FormSelectionTestInput!]!
+    selectionTests: [SelectionTestInput!]!
   }
 
   type Query {
-    getLessonTest(id: Int!): LessonTest
+    getLessonTest(id: String!): LessonTest
   }
 
   type Mutation {
     createLessonTest(input: LessonTestInput!): LessonTest!
-    updateLessonTest(id: Int!, input: LessonTestInput!): LessonTest!
-    deleteLessonTest(id: Int!): Boolean!
+    updateLessonTest(id: String!, input: LessonTestInput!): LessonTest!
+    deleteLessonTest(id: String!): Boolean!
   }
 `;

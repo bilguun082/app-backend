@@ -2,14 +2,14 @@ import gql from "graphql-tag";
 
 export const lessonTypeDefs = gql`
   type Fact {
-    id: ID!
+    id: String!
     image: String
     fact: String!
     exampleSentence: String!
   }
 
   type Lesson {
-    id: ID!
+    id: String!
     title: String!
     isSaved: Boolean!
     facts: [Fact]!
@@ -28,12 +28,12 @@ export const lessonTypeDefs = gql`
   }
 
   type Query {
-    getLesson(id: ID!): Lesson
+    getLesson(id: String!): Lesson
     getAllLessons: [Lesson]!
   }
 
   type Mutation {
     createLesson(input: LessonInput!): Lesson!
-    updateLesson(id: ID!, input: LessonInput!): Lesson!
+    updateLesson(id: String!, input: LessonInput!): Lesson!
   }
 `;

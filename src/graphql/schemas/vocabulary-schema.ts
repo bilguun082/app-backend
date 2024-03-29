@@ -2,7 +2,7 @@ import gql from "graphql-tag";
 
 export const vocabularyTypeDefs = gql`
   type Word {
-    id: ID!
+    id: String!
     image: String!
     word: String!
     translation: String!
@@ -11,31 +11,31 @@ export const vocabularyTypeDefs = gql`
   }
 
   type Vocubary {
-    id: ID!
+    id: String!
     title: String!
     words: [Word]!
   }
 
   input VocabularyInput {
     title: String!
-    facts: [FactInput]!
+    words: [WordInput]!
   }
 
   input WordInput {
     image: String!
-    fact: String!
+    word: String!
     translation: String!
     exampleSentence: String!
     isSaved: Boolean!
   }
 
   type Query {
-    getVocabulary(id: ID!): Vocabulary
+    getVocabulary(id: String!): Vocabulary
     getAllVocabularies: [Vocabulary]!
   }
 
   type Mutation {
     createVocabulary(input: VocabularyInput!): Vocabulary!
-    updateVocabulary(id: ID!, input: VocabularyInput!): Vocabulary!
+    updateVocabulary(id: String!, input: VocabularyInput!): Vocabulary!
   }
 `;
