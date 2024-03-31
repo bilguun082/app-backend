@@ -12,9 +12,28 @@ export const getLessonTest = async (id: string) => {
   }
 };
 
-export const createLessonTest = async (input: Prisma.LessonTestCreateInput) => {
+export const createLessonTest = async (input: {
+  selectionTests: Array<{
+    type: string;
+    words: string[];
+    correctForm: string;
+  }>;
+  grade: string;
+}) => {
+  const data: Prisma.LessonTestCreateInput = {
+    selectionTests: {
+      createMany: {
+        data: input.selectionTests.map((test) => ({
+          type: test.type,
+          words: test.words,
+          correctForm: test.correctForm,
+        })),
+      },
+    },
+    grade: input.grade,
+  };
   try {
-    const result = await prisma.lessonTest.create({ data: input });
+    const result = await prisma.lessonTest.create({ data });
     return result;
   } catch (error) {
     console.error(error);
@@ -24,7 +43,9 @@ export const createLessonTest = async (input: Prisma.LessonTestCreateInput) => {
 
 export const updateLessonTest = async (
   id: string,
-  input: Prisma.LessonTestUpdateInput
+  input: {
+    grade: string;
+  }
 ) => {
   try {
     const result = await prisma.lessonTest.update({
@@ -34,16 +55,6 @@ export const updateLessonTest = async (
     return result;
   } catch (error) {
     console.error(error);
-    throw new GraphQLError("Error creating lesson test");
-  }
-};
-
-export const deleteLessonTest = async (id: string) => {
-  try {
-    const result = await prisma.lessonTest.delete({ where: { id } });
-    return result;
-  } catch (error) {
-    console.error(error);
-    throw new GraphQLError("Error deleting lesson test");
+    throw new GraphQLError("Error updating lesson test");
   }
 };

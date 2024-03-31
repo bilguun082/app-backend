@@ -39,12 +39,20 @@ export const createVocabularyTest = async (input: {
   }
 };
 
-export const deleteVocabularyTest = async (id: string) => {
+export const updateVocabularyTest = async (
+  id: string,
+  input: {
+    grade: string;
+  }
+) => {
   try {
-    const result = await prisma.vocabularyTest.delete({ where: { id } });
+    const result = await prisma.vocabularyTest.update({
+      where: { id },
+      data: input,
+    });
     return result;
   } catch (error) {
     console.error(error);
-    throw new GraphQLError("Error deleting Vocabulary test");
+    throw new GraphQLError("Error updating lesson test");
   }
 };

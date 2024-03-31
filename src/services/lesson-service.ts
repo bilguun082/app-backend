@@ -38,27 +38,3 @@ export const createLesson = async (input: {
     throw new GraphQLError("Errror creating vocabulary");
   }
 };
-
-export const updateLesson = async (
-  id: string,
-  input: {
-    title: string;
-    isSaved: boolean;
-    facts: Array<{
-      image: string;
-      fact: string;
-      exampleSentence: string;
-    }>;
-  }
-) => {
-  try {
-    const result = await prisma.vocabulary.update({
-      where: { id },
-      data: input,
-    });
-    return result;
-  } catch (error) {
-    console.error(error);
-    throw new GraphQLError("Error creating user");
-  }
-};

@@ -23,16 +23,16 @@ export const vocabularyTestTypeDefs = gql`
     grade: String!
   }
 
+  input GradeInput {
+    grade: String!
+  }
+
   type Query {
     getVocabularyTest(id: String!): VocabularyTest
   }
 
   type Mutation {
     createVocabularyTest(input: VocabularyTestInput!): VocabularyTest!
-    updateVocabularyTest(
-      id: String!
-      input: VocabularyTestInput!
-    ): VocabularyTest!
-    deleteVocabularyTest(id: String!): Boolean!
+    updateVocabularyTest(id: String!, input: GradeInput!): VocabularyTest!
   }
 `;

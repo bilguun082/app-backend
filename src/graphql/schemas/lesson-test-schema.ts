@@ -11,16 +11,22 @@ export const lessonTestTypeDefs = gql`
   type LessonTest {
     id: String!
     selectionTests: [SelectionTest!]!
+    grade: String!
   }
 
-  input WordSelectionTestInput {
+  input SelectionTestInput {
+    type: String!
     words: [String!]!
     correctForm: String!
-    grade: Float
   }
 
   input LessonTestInput {
     selectionTests: [SelectionTestInput!]!
+    grade: String!
+  }
+
+  input GradeInput {
+    grade: String!
   }
 
   type Query {
@@ -29,7 +35,6 @@ export const lessonTestTypeDefs = gql`
 
   type Mutation {
     createLessonTest(input: LessonTestInput!): LessonTest!
-    updateLessonTest(id: String!, input: LessonTestInput!): LessonTest!
-    deleteLessonTest(id: String!): Boolean!
+    updateLessonTest(id: String!, input: GradeInput!): LessonTest!
   }
 `;
