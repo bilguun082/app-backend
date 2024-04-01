@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,8 +8,70 @@ datasource db {
 }
 
 model User {
-  id       String   @id @default(nanoid()) @map("_id")
-  email    String   @unique
-  name     String?
-  password String
+  id       String  @id @default(nanoid()) @map("_id")
+  email    String  @unique
+  username String?
+}
+
+model Lesson {
+  id      String  @id @default(nanoid()) @map("_id")
+  title   String
+  isSaved Boolean
+  facts   Fact[]
+}
+
+model Fact {
+  id              String  @id @default(nanoid()) @map("_id")
+  image           String?
+  fact            String
+  exampleSentence String
+  lesson          Lesson  @relation(fields: [lessonId], references: [id])
+  lessonId        String
+}
+
+model LessonTest {
+  id             String          @id @default(nanoid()) @map("_id")
+  selectionTests SelectionTest[]
+  grade          String
+}
+
+model SelectionTest {
+  id           String     @id @default(nanoid()) @map("_id")
+  type         String
+  sentence     String
+  words        String[]
+  correctForm  String
+  lessonTest   LessonTest @relation(fields: [lessonTestId], references: [id])
+  lessonTestId String
+}
+
+model Vocabulary {
+  id    String @id @default(nanoid()) @map("_id")
+  title String
+  words Word[]
+}
+
+model Word {
+  id              String      @id @default(nanoid()) @map("_id")
+  image           String
+  word            String
+  translation     String
+  exampleSentence String
+  isSaved         Boolean
+  Vocabulary      Vocabulary? @relation(fields: [vocabularyId], references: [id])
+  vocabularyId    String?
+}
+
+model VocabularyTest {
+  id                       String                    @id @default(nanoid()) @map("_id")
+  vocabularySelectionTests VocabularySelectionTest[]
+  grade                    String
+}
+
+model VocabularySelectionTest {
+  id               String          @id @default(nanoid()) @map("_id")
+  words            String[]
+  correctAnswer    String
+  VocabularyTest   VocabularyTest? @relation(fields: [vocabularyTestId], references: [id])
+  vocabularyTestId String?
 }
