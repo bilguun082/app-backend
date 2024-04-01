@@ -4,6 +4,7 @@ export const lessonTestTypeDefs = gql`
   type SelectionTest {
     id: String!
     type: String!
+    sentence: String!
     words: [String!]!
     correctForm: String!
   }
@@ -16,6 +17,7 @@ export const lessonTestTypeDefs = gql`
 
   input SelectionTestInput {
     type: String!
+    sentence: String!
     words: [String!]!
     correctForm: String!
   }
@@ -24,6 +26,7 @@ export const lessonTestTypeDefs = gql`
     selectionTests: [SelectionTestInput!]!
     grade: String!
   }
+
 
   input GradeInput {
     grade: String!

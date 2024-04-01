@@ -14,7 +14,12 @@ export const getAllVocabularies = async () => {
 
 export const getVocabulary = async (id: string) => {
   try {
-    const result = await prisma.vocabulary.findUnique({ where: { id } });
+    const result = await prisma.vocabulary.findUnique({
+      where: { id },
+      include: {
+        words: true,
+      },
+    });
     return result;
   } catch (error) {
     console.error(error);
@@ -52,5 +57,23 @@ export const createVocabulary = async (input: {
   } catch (error) {
     console.error(error);
     throw new GraphQLError("Errror creating vocabulary");
+  }
+};
+
+export const updateVocabulary = async (
+  id: string,
+  input: {
+    isSaved: boolean;
+  }
+) => {
+  try {
+    const result = await prisma.word.update({
+      where: { id },
+      data: input,
+    });
+    return result;
+  } catch (error) {
+    console.error(error);
+    throw new GraphQLError("Error updating vocabulary");
   }
 };

@@ -4,7 +4,12 @@ import { GraphQLError } from "graphql";
 
 export const getVocabularyTest = async (id: string) => {
   try {
-    const result = await prisma.vocabularyTest.findUnique({ where: { id } });
+    const result = await prisma.vocabularyTest.findUnique({
+      where: { id },
+      include: {
+        vocabularySelectionTests: true,
+      },
+    });
     return result;
   } catch (error) {
     console.error(error);

@@ -1,4 +1,4 @@
-import { createVocabulary } from "@/services/vocabulary-service";
+import { createVocabulary, updateVocabulary } from "@/services/vocabulary-service";
 
 export const vocabularyMutations = {
   createVocabulary: async (
@@ -18,4 +18,16 @@ export const vocabularyMutations = {
       };
     }
   ) => createVocabulary(input),
+  updateVocabulary: async (
+    _: unknown,
+    {
+      id,
+      input,
+    }: {
+      id: string;
+      input: {
+        isSaved: boolean;
+      };
+    }
+  ) => updateVocabulary(id, input),
 };

@@ -27,6 +27,10 @@ export const lessonTypeDefs = gql`
     exampleSentence: String!
   }
 
+  input UpdateInput {
+    isSaved: Boolean!
+  }
+
   type Query {
     getLesson(id: String!): Lesson
     getAllLessons: [Lesson]!
@@ -34,6 +38,6 @@ export const lessonTypeDefs = gql`
 
   type Mutation {
     createLesson(input: LessonInput!): Lesson!
-    updateLesson(id: String!, input: LessonInput!): Lesson!
+    updateLesson(id: String!, input: UpdateInput!): Lesson!
   }
 `;

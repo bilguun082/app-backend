@@ -12,6 +12,7 @@ export const lessonTestMutations = {
       input: {
         selectionTests: Array<{
           type: string;
+          sentence: string;
           words: string[];
           correctForm: string;
         }>;

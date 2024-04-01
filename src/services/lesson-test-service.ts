@@ -4,7 +4,12 @@ import { GraphQLError } from "graphql";
 
 export const getLessonTest = async (id: string) => {
   try {
-    const result = await prisma.lessonTest.findUnique({ where: { id } });
+    const result = await prisma.lessonTest.findUnique({
+      where: { id },
+      include: {
+        selectionTests: true,
+      },
+    });
     return result;
   } catch (error) {
     console.error(error);
@@ -15,6 +20,7 @@ export const getLessonTest = async (id: string) => {
 export const createLessonTest = async (input: {
   selectionTests: Array<{
     type: string;
+    sentence: string;
     words: string[];
     correctForm: string;
   }>;
@@ -25,6 +31,7 @@ export const createLessonTest = async (input: {
       createMany: {
         data: input.selectionTests.map((test) => ({
           type: test.type,
+          sentence: test.sentence,
           words: test.words,
           correctForm: test.correctForm,
         })),

@@ -1,4 +1,4 @@
-import { createLesson } from "@/services/lesson-service";
+import { createLesson, updateLesson } from "@/services/lesson-service";
 
 export const lessonMutations = {
   createLesson: async (
@@ -13,4 +13,16 @@ export const lessonMutations = {
       };
     }
   ) => createLesson(input),
+  updateLesson: async (
+    _: unknown,
+    {
+      id,
+      input,
+    }: {
+      id: string;
+      input: {
+        isSaved: boolean;
+      };
+    }
+  ) => updateLesson(id, input),
 };

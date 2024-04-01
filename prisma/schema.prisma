@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -39,6 +38,7 @@ model LessonTest {
 model SelectionTest {
   id           String     @id @default(nanoid()) @map("_id")
   type         String
+  sentence     String
   words        String[]
   correctForm  String
   lessonTest   LessonTest @relation(fields: [lessonTestId], references: [id])
