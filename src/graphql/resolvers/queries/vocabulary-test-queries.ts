@@ -1,6 +1,6 @@
 import { getVocabularyTest } from "@/services/vocabulary-test-service";
 
 export const vocabularyTestQueries = {
-  getVocabularyTest: (_: unknown, { id }: { id: string }) =>
-    getVocabularyTest(id),
+  getVocabularyTest: (_: unknown, { title }: { title: string }) =>
+    getVocabularyTest(title),
 };

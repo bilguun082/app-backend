@@ -34,6 +34,7 @@ model Fact {
 
 model LessonTest {
   id             String          @id @default(nanoid()) @map("_id")
+  title          String
   selectionTests SelectionTest[]
   grade          String
 }
@@ -71,6 +72,7 @@ model Word {
 
 model VocabularyTest {
   id                       String                    @id @default(nanoid()) @map("_id")
+  title                    String
   vocabularySelectionTests VocabularySelectionTest[]
   grade                    String
 }

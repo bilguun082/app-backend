@@ -1,6 +1,7 @@
 import { prisma } from "@/utils/prisma";
 import { Prisma } from "@prisma/client";
 import { GraphQLError } from "graphql";
+import { stringify } from "querystring";
 
 export const getLessonTest = async (id: string) => {
   try {
@@ -18,6 +19,7 @@ export const getLessonTest = async (id: string) => {
 };
 
 export const createLessonTest = async (input: {
+  title: string;
   selectionTests: Array<{
     type: string;
     sentence: string;
@@ -28,6 +30,7 @@ export const createLessonTest = async (input: {
   grade: string;
 }) => {
   const data: Prisma.LessonTestCreateInput = {
+    title: input.title,
     selectionTests: {
       createMany: {
         data: input.selectionTests.map((test) => ({

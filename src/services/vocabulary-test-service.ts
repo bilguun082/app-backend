@@ -18,6 +18,7 @@ export const getVocabularyTest = async (id: string) => {
 };
 
 export const createVocabularyTest = async (input: {
+  title: string;
   vocabularySelectionTests: Array<{
     question: string;
     words: string[];
@@ -26,6 +27,7 @@ export const createVocabularyTest = async (input: {
   grade: string;
 }) => {
   const data: Prisma.VocabularyTestCreateInput = {
+    title: input.title,
     vocabularySelectionTests: {
       createMany: {
         data: input.vocabularySelectionTests.map((test) => ({

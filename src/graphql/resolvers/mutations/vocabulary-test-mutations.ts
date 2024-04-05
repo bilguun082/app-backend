@@ -10,6 +10,7 @@ export const vocabularyTestMutations = {
       input,
     }: {
       input: {
+        title: string;
         vocabularySelectionTests: Array<{
           question: string;
           words: string[];

@@ -11,6 +11,7 @@ export const vocabularyTestTypeDefs = gql`
 
   type VocabularyTest {
     id: String!
+    title: String!
     vocabularySelectionTests: [VocabularySelectionTest!]!
     grade: String!
   }
@@ -23,6 +24,7 @@ export const vocabularyTestTypeDefs = gql`
   }
 
   input VocabularyTestInput {
+    title: String!
     vocabularySelectionTests: [VocabularySelectionTestInput!]!
     grade: String!
   }
@@ -32,7 +34,7 @@ export const vocabularyTestTypeDefs = gql`
   }
 
   type Query {
-    getVocabularyTest(id: String!): VocabularyTest
+    getVocabularyTest(title: String!): VocabularyTest
   }
 
   type Mutation {

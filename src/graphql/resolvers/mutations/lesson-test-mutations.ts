@@ -10,6 +10,7 @@ export const lessonTestMutations = {
       input,
     }: {
       input: {
+        title: string;
         selectionTests: Array<{
           type: string;
           sentence: string;

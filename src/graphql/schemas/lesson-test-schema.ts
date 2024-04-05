@@ -12,6 +12,7 @@ export const lessonTestTypeDefs = gql`
 
   type LessonTest {
     id: String!
+    title: String!
     selectionTests: [SelectionTest!]!
     grade: String!
   }
@@ -25,6 +26,7 @@ export const lessonTestTypeDefs = gql`
   }
 
   input LessonTestInput {
+    title: String
     selectionTests: [SelectionTestInput!]!
     grade: String!
   }
@@ -34,7 +36,7 @@ export const lessonTestTypeDefs = gql`
   }
 
   type Query {
-    getLessonTest(id: String!): LessonTest
+    getLessonTest(title: String!): LessonTest
   }
 
   type Mutation {
