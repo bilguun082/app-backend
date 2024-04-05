@@ -8,12 +8,15 @@ export const vocabularyTypeDefs = gql`
     translation: String!
     exampleSentence: String!
     isSaved: Boolean!
+    isLast: Boolean
   }
 
   type Vocabulary {
     id: String!
     title: String!
     words: [Word]!
+    isStarted: Boolean
+    isDone: Boolean
   }
 
   input VocabularyInput {
@@ -22,7 +25,9 @@ export const vocabularyTypeDefs = gql`
   }
 
   input VocabularyUpdateInput {
-    isSaved: Boolean!
+    isSaved: Boolean
+    isStarted: Boolean
+    isDone: Boolean
   }
 
   input WordInput {
@@ -31,6 +36,7 @@ export const vocabularyTypeDefs = gql`
     translation: String!
     exampleSentence: String!
     isSaved: Boolean!
+    isLast: Boolean
   }
 
   type Query {

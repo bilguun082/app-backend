@@ -6,12 +6,15 @@ export const lessonTypeDefs = gql`
     image: String
     fact: String!
     exampleSentence: String!
+    isLast: Boolean!
   }
 
   type Lesson {
     id: String!
     title: String!
     isSaved: Boolean!
+    isStarted: Boolean
+    isDone: Boolean
     facts: [Fact]!
   }
 
@@ -25,10 +28,13 @@ export const lessonTypeDefs = gql`
     image: String
     fact: String!
     exampleSentence: String!
+    isLast: Boolean
   }
 
   input UpdateInput {
-    isSaved: Boolean!
+    isSaved: Boolean
+    isStarted: Boolean
+    isDone: Boolean
   }
 
   type Query {

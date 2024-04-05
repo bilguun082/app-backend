@@ -30,21 +30,27 @@ export const getLesson = async (id: string) => {
 export const createLesson = async (input: {
   title: string;
   isSaved: boolean;
+  isStarted: boolean;
+  isDone: boolean;
   facts: Array<{
     image: string;
     fact: string;
     exampleSentence: string;
+    isLast: boolean;
   }>;
 }) => {
   const data: Prisma.LessonCreateInput = {
     title: input.title,
     isSaved: input.isSaved,
+    isStarted: input.isStarted,
+    isDone: input.isDone,
     facts: {
       createMany: {
         data: input.facts.map((item) => ({
           image: item.image,
           fact: item.fact,
           exampleSentence: item.exampleSentence,
+          isLast: item.isLast,
         })),
       },
     },
@@ -61,7 +67,9 @@ export const createLesson = async (input: {
 export const updateLesson = async (
   id: string,
   input: {
-    isSaved: boolean;
+    isSaved: boolean | undefined;
+    isStarted: boolean | undefined;
+    isDone: boolean | undefined;
   }
 ) => {
   try {

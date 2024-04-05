@@ -9,7 +9,14 @@ export const lessonMutations = {
       input: {
         title: string;
         isSaved: boolean;
-        facts: Array<{ image: string; fact: string; exampleSentence: string }>;
+        isStarted: boolean;
+        isDone: boolean;
+        facts: Array<{
+          image: string;
+          fact: string;
+          exampleSentence: string;
+          isLast: boolean;
+        }>;
       };
     }
   ) => createLesson(input),
@@ -22,6 +29,8 @@ export const lessonMutations = {
       id: string;
       input: {
         isSaved: boolean;
+        isStarted: boolean;
+        isDone: boolean;
       };
     }
   ) => updateLesson(id, input),

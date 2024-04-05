@@ -19,6 +19,7 @@ export const getVocabularyTest = async (id: string) => {
 
 export const createVocabularyTest = async (input: {
   vocabularySelectionTests: Array<{
+    question: string;
     words: string[];
     correctAnswer: string;
   }>;
@@ -28,6 +29,7 @@ export const createVocabularyTest = async (input: {
     vocabularySelectionTests: {
       createMany: {
         data: input.vocabularySelectionTests.map((test) => ({
+          question: test.question,
           words: test.words,
           correctAnswer: test.correctAnswer,
         })),

@@ -23,6 +23,7 @@ export const createLessonTest = async (input: {
     sentence: string;
     words: string[];
     correctForm: string;
+    isLast: boolean;
   }>;
   grade: string;
 }) => {
@@ -34,6 +35,7 @@ export const createLessonTest = async (input: {
           sentence: test.sentence,
           words: test.words,
           correctForm: test.correctForm,
+          isLast: test.isLast,
         })),
       },
     },

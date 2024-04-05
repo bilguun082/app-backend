@@ -11,6 +11,7 @@ export const vocabularyTestMutations = {
     }: {
       input: {
         vocabularySelectionTests: Array<{
+          question: string;
           words: string[];
           correctAnswer: string;
         }>;

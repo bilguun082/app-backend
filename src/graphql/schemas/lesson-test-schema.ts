@@ -7,6 +7,7 @@ export const lessonTestTypeDefs = gql`
     sentence: String!
     words: [String!]!
     correctForm: String!
+    isLast: Boolean
   }
 
   type LessonTest {
@@ -20,13 +21,13 @@ export const lessonTestTypeDefs = gql`
     sentence: String!
     words: [String!]!
     correctForm: String!
+    isLast: Boolean
   }
 
   input LessonTestInput {
     selectionTests: [SelectionTestInput!]!
     grade: String!
   }
-
 
   input GradeInput {
     grade: String!

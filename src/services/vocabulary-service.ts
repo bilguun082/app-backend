@@ -35,7 +35,10 @@ export const createVocabulary = async (input: {
     translation: string;
     exampleSentence: string;
     isSaved: boolean;
+    isLast: boolean;
   }>;
+  isStarted: boolean;
+  isDone: boolean;
 }) => {
   const data: Prisma.VocabularyCreateInput = {
     title: input.title,
@@ -47,9 +50,12 @@ export const createVocabulary = async (input: {
           translation: word.translation,
           exampleSentence: word.exampleSentence,
           isSaved: word.isSaved,
+          isLast: word.isLast,
         })),
       },
     },
+    isStarted: input.isStarted,
+    isDone: input.isDone,
   };
   try {
     const result = await prisma.vocabulary.create({ data });
@@ -63,7 +69,9 @@ export const createVocabulary = async (input: {
 export const updateVocabulary = async (
   id: string,
   input: {
-    isSaved: boolean;
+    isSaved: boolean | undefined;
+    isStarted: boolean | undefined;
+    isDone: boolean | undefined;
   }
 ) => {
   try {

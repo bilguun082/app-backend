@@ -14,10 +14,12 @@ model User {
 }
 
 model Lesson {
-  id      String  @id @default(nanoid()) @map("_id")
-  title   String
-  isSaved Boolean
-  facts   Fact[]
+  id        String  @id @default(nanoid()) @map("_id")
+  title     String
+  isSaved   Boolean @default(false)
+  isStarted Boolean @default(false)
+  isDone    Boolean @default(false)
+  facts     Fact[]
 }
 
 model Fact {
@@ -25,6 +27,7 @@ model Fact {
   image           String?
   fact            String
   exampleSentence String
+  isLast          Boolean @default(false)
   lesson          Lesson  @relation(fields: [lessonId], references: [id])
   lessonId        String
 }
@@ -41,14 +44,17 @@ model SelectionTest {
   sentence     String
   words        String[]
   correctForm  String
+  isLast       Boolean
   lessonTest   LessonTest @relation(fields: [lessonTestId], references: [id])
   lessonTestId String
 }
 
 model Vocabulary {
-  id    String @id @default(nanoid()) @map("_id")
-  title String
-  words Word[]
+  id        String  @id @default(nanoid()) @map("_id")
+  title     String
+  isStarted Boolean @default(false)
+  isDone    Boolean @default(false)
+  words     Word[]
 }
 
 model Word {
@@ -57,7 +63,8 @@ model Word {
   word            String
   translation     String
   exampleSentence String
-  isSaved         Boolean
+  isSaved         Boolean     @default(false)
+  isLast          Boolean
   Vocabulary      Vocabulary? @relation(fields: [vocabularyId], references: [id])
   vocabularyId    String?
 }
@@ -70,6 +77,7 @@ model VocabularyTest {
 
 model VocabularySelectionTest {
   id               String          @id @default(nanoid()) @map("_id")
+  question         String
   words            String[]
   correctAnswer    String
   VocabularyTest   VocabularyTest? @relation(fields: [vocabularyTestId], references: [id])

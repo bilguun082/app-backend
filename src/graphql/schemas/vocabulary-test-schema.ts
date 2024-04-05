@@ -3,8 +3,10 @@ import gql from "graphql-tag";
 export const vocabularyTestTypeDefs = gql`
   type VocabularySelectionTest {
     id: String!
+    question: String!
     words: [String!]!
     correctAnswer: String!
+    isLast: Boolean
   }
 
   type VocabularyTest {
@@ -14,8 +16,10 @@ export const vocabularyTestTypeDefs = gql`
   }
 
   input VocabularySelectionTestInput {
+    question: String!
     words: [String!]!
     correctAnswer: String!
+    isLast: Boolean
   }
 
   input VocabularyTestInput {

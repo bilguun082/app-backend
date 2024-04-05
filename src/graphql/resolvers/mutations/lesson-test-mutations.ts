@@ -15,6 +15,7 @@ export const lessonTestMutations = {
           sentence: string;
           words: string[];
           correctForm: string;
+          isLast: boolean;
         }>;
         grade: string;
       };
