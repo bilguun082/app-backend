@@ -2,10 +2,10 @@ import { prisma } from "@/utils/prisma";
 import { Prisma } from "@prisma/client";
 import { GraphQLError } from "graphql";
 
-export const getVocabularyTest = async (id: string) => {
+export const getVocabularyTest = async (title: string) => {
   try {
-    const result = await prisma.vocabularyTest.findUnique({
-      where: { id },
+    const result = await prisma.vocabularyTest.findFirst({
+      where: { title },
       include: {
         vocabularySelectionTests: true,
       },

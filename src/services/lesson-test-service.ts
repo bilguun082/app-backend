@@ -1,12 +1,11 @@
 import { prisma } from "@/utils/prisma";
 import { Prisma } from "@prisma/client";
 import { GraphQLError } from "graphql";
-import { stringify } from "querystring";
 
-export const getLessonTest = async (id: string) => {
+export const getLessonTest = async (title: string) => {
   try {
-    const result = await prisma.lessonTest.findUnique({
-      where: { id },
+    const result = await prisma.lessonTest.findFirst({
+      where: { title },
       include: {
         selectionTests: true,
       },
