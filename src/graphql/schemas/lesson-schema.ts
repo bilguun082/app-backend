@@ -3,6 +3,7 @@ import gql from "graphql-tag";
 export const lessonTypeDefs = gql`
   type Fact {
     id: String!
+    title: String
     image: String
     fact: String!
     exampleSentence: String!
@@ -25,6 +26,7 @@ export const lessonTypeDefs = gql`
   }
 
   input FactInput {
+    title: String
     image: String
     fact: String!
     exampleSentence: String!

@@ -30,6 +30,7 @@ export const getVocabulary = async (id: string) => {
 export const createVocabulary = async (input: {
   title: string;
   words: Array<{
+    title: string;
     image: string;
     word: string;
     translation: string;
@@ -45,6 +46,7 @@ export const createVocabulary = async (input: {
     words: {
       createMany: {
         data: input.words.map((word) => ({
+          title: word.title,
           image: word.image,
           word: word.word,
           translation: word.translation,

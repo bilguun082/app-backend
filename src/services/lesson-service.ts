@@ -33,6 +33,7 @@ export const createLesson = async (input: {
   isStarted: boolean;
   isDone: boolean;
   facts: Array<{
+    title: string;
     image: string;
     fact: string;
     exampleSentence: string;
@@ -47,6 +48,7 @@ export const createLesson = async (input: {
     facts: {
       createMany: {
         data: input.facts.map((item) => ({
+          title: item.title,
           image: item.image,
           fact: item.fact,
           exampleSentence: item.exampleSentence,

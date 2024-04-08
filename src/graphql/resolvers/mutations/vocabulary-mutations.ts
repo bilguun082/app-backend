@@ -14,6 +14,7 @@ export const vocabularyMutations = {
         isStarted: boolean;
         isDone: boolean;
         words: Array<{
+          title: string;
           image: string;
           word: string;
           translation: string;

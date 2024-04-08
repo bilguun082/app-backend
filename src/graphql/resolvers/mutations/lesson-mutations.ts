@@ -12,6 +12,7 @@ export const lessonMutations = {
         isStarted: boolean;
         isDone: boolean;
         facts: Array<{
+          title: string;
           image: string;
           fact: string;
           exampleSentence: string;

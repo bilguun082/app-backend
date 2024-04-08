@@ -3,6 +3,7 @@ import gql from "graphql-tag";
 export const vocabularyTypeDefs = gql`
   type Word {
     id: String!
+    title: String!
     image: String!
     word: String!
     translation: String!
@@ -31,6 +32,7 @@ export const vocabularyTypeDefs = gql`
   }
 
   input WordInput {
+    title: String!
     image: String!
     word: String!
     translation: String!
