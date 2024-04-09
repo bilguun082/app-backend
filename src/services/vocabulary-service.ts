@@ -71,13 +71,12 @@ export const createVocabulary = async (input: {
 export const updateVocabulary = async (
   id: string,
   input: {
-    isSaved: boolean | undefined;
     isStarted: boolean | undefined;
     isDone: boolean | undefined;
   }
 ) => {
   try {
-    const result = await prisma.word.update({
+    const result = await prisma.vocabulary.update({
       where: { id },
       data: input,
     });
@@ -85,5 +84,54 @@ export const updateVocabulary = async (
   } catch (error) {
     console.error(error);
     throw new GraphQLError("Error updating vocabulary");
+  }
+};
+
+export const updateWord = async (
+  id: string,
+  wordId: string,
+  input: {
+    isSaved: boolean;
+  }
+) => {
+  const vocabulary = await prisma.vocabulary.findUnique({
+    where: {
+      id: id,
+    },
+    include: {
+      words: true,
+    },
+  });
+
+  if (!vocabulary) {
+    throw new Error("Vocabulary not found");
+  }
+
+  const wordToUpdate = vocabulary.words.find((word) => word.id === wordId);
+
+  if (!wordToUpdate) {
+    throw new Error("Word not found in the Vocabulary");
+  }
+
+  console.log("Updating word:", wordToUpdate.id);
+
+  try {
+    const updatedWord = await prisma.word.update({
+      where: {
+        id: wordToUpdate.id,
+      },
+      data: input,
+    });
+
+    if (!updatedWord) {
+      throw new Error("Failed to update word");
+    }
+
+    console.log("Word updated successfully:", updatedWord.id);
+
+    return updatedWord;
+  } catch (error) {
+    console.error("Error updating word:", error);
+    throw new Error("Error updating word");
   }
 };

@@ -1,6 +1,7 @@
 import {
   createVocabulary,
   updateVocabulary,
+  updateWord,
 } from "@/services/vocabulary-service";
 
 export const vocabularyMutations = {
@@ -32,11 +33,25 @@ export const vocabularyMutations = {
       input,
     }: {
       id: string;
+      wordId: string;
       input: {
-        isSaved: boolean;
         isStarted: boolean;
         isDone: boolean;
       };
     }
   ) => updateVocabulary(id, input),
+  updateWord: async (
+    _: unknown,
+    {
+      id,
+      wordId,
+      input,
+    }: {
+      id: string;
+      wordId: string;
+      input: {
+        isSaved: boolean;
+      };
+    }
+  ) => updateWord(id, wordId, input),
 };

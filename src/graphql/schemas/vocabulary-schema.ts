@@ -26,9 +26,12 @@ export const vocabularyTypeDefs = gql`
   }
 
   input VocabularyUpdateInput {
-    isSaved: Boolean
     isStarted: Boolean
     isDone: Boolean
+  }
+
+  input WordUpdateInput {
+    isSaved: Boolean!
   }
 
   input WordInput {
@@ -49,5 +52,6 @@ export const vocabularyTypeDefs = gql`
   type Mutation {
     createVocabulary(input: VocabularyInput!): Vocabulary!
     updateVocabulary(id: String!, input: VocabularyUpdateInput!): Vocabulary!
+    updateWord(id: String!, wordId: String!, input: WordUpdateInput!): Word!
   }
 `;
